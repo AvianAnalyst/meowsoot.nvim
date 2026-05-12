@@ -19,6 +19,7 @@ function M.run()
   local wezterm = require("shipwright.transform.contrib.wezterm")
   local ghostty = require("nyanuwatari.shipwright.runners.ghostty")
   local tmux = require("nyanuwatari.shipwright.runners.tmux")
+  local fish = require("nyanuwatari.shipwright.runners.fish")
 
   local palette = require("nyanuwatari.palette").dark
   local colors = require("nyanuwatari.term").colors_map(palette)
@@ -61,6 +62,9 @@ function M.run()
 
   -- Tmux
   run(colors, tmux, { prepend, AUTOGEN_HEADER }, { overwrite, "extras/tmux/nyanuwatari.tmux" })
+
+  -- Fish
+  run(colors, fish, { prepend, AUTOGEN_HEADER }, { overwrite, "extras/fish/nyanuwatari.fish" })
 
   print("nyanuwatari: regenerated extras/ ✓")
 end
