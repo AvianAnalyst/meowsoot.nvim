@@ -1,27 +1,26 @@
 # nyanuwatari
 
-A dark Neovim colorscheme.
+A dark Neovim colorscheme. Pure Lua, no runtime dependencies.
 
 ## The story
 
-A fusion of two ideas. The charcoal background is inspired by **Susuwatari** — the wandering soot sprites from Studio Ghibli films. The pink and peach accents are inspired by **Nyan Cat**'s pop-tart palette. The rest of the colors — cyan, violet, yellow — were tuned freely to round out the system.
+A fusion of two ideas. The charcoal background is inspired by **Susuwatari** — the wandering soot sprites from Studio Ghibli films. The pink and peach accents are inspired by **Nyan Cat**'s pop-tart palette. The rest of the colors — cyan, lavender, yellow, blue — were tuned to round out the system.
 
-It's a **cyan / pink / violet / yellow**-oriented colorscheme. No greens for syntax (just my weird taste — green is reserved strictly for diff-add, git-add, and string escape edge cases where "addition / success" semantics are unambiguous).
+It's a **cyan / pink / lavender / yellow**-oriented colorscheme. **No green in code** — green exists in the palette but is reachable only through UI semantic aliases (diff add, git add, success state, ANSI terminal slot 2). Strings are yellow, escapes are peach, types are lavender, functions are pink.
 
-Five-hue chromatic palette at 190° · 275° · 328° · 20° · 50°, warm-biased, AAA contrast throughout.
+Six-hue chromatic palette anchored at 190° · 208° · 275° · 328° · 20° · 50°, warm-biased, AAA contrast throughout.
 
 ![nyanuwatari.nvim in action](static/showcase.png)
 
 ## Install
 
-Requires Neovim 0.9+ and [`rktjmp/lush.nvim`](https://github.com/rktjmp/lush.nvim).
+Requires Neovim 0.9+. **No external dependencies.**
 
 ### lazy.nvim
 
 ```lua
 {
   "marekh19/nyanuwatari.nvim",
-  dependencies = { "rktjmp/lush.nvim" },
   lazy = false,
   priority = 1000,
   config = function()
@@ -35,7 +34,6 @@ Requires Neovim 0.9+ and [`rktjmp/lush.nvim`](https://github.com/rktjmp/lush.nvi
 ```lua
 {
   dir = "/path/to/nyanuwatari",
-  dependencies = { "rktjmp/lush.nvim" },
   lazy = false,
   priority = 1000,
   config = function()
@@ -44,51 +42,111 @@ Requires Neovim 0.9+ and [`rktjmp/lush.nvim`](https://github.com/rktjmp/lush.nvi
 }
 ```
 
-## Extras (terminals, multiplexers)
+## Configuration
+
+All options are optional. Defaults shown.
+
+```lua
+require("nyanuwatari").setup({
+  transparent = false,            -- transparent backgrounds
+  terminal_colors = true,         -- set vim.g.terminal_color_0..15
+
+  styles = {
+    comments  = { italic = true },
+    keywords  = {},
+    functions = {},
+    variables = {},
+    sidebars  = "dark",           -- "dark" | "transparent" | "normal"
+    floats    = "dark",
+  },
+
+  -- Plugin highlight groups. Auto-detected via lazy.nvim if `auto = true`.
+  plugins = {
+    all  = false,
+    auto = true,
+    -- Force-enable / disable individual plugins:
+    -- telescope = true,
+    -- gitsigns = false,
+  },
+
+  cache = true,                   -- cache compiled highlights to disk
+
+  on_colors = function(c) end,    -- mutate the color table
+  on_highlights = function(hl, c) end, -- mutate the highlight table
+
+})
+vim.cmd.colorscheme("nyanuwatari")
+```
+
+### Plugins covered out of the box
+
+`gitsigns` · `telescope` · `nvim-cmp` · `blink.cmp` · `lazy.nvim` · `flash.nvim` · `nvim-tree` · `indent-blankline` · `treesitter-context` · `snacks.nvim` · `mini.icons` / `mini.files` / `mini.statusline` / `mini.indentscope` / `mini.diff` / `mini.notify` / `mini.pick`
+
+### lualine
+
+Use the bundled lualine theme:
+
+```lua
+require("lualine").setup({ options = { theme = "nyanuwatari" } })
+```
+
+## Extras (terminal / multiplexer / shell)
 
 Pre-generated configs live in `extras/`:
 
-| Tool       | File                              |
-|------------|-----------------------------------|
-| Ghostty    | `extras/ghostty/nyanuwatari`      |
-| Kitty      | `extras/kitty/nyanuwatari.conf`   |
-| Alacritty  | `extras/alacritty/nyanuwatari.yml` (legacy YAML format) |
-| WezTerm    | `extras/wezterm/nyanuwatari.toml` |
-| Tmux       | `extras/tmux/nyanuwatari.tmux`    |
+| Tool    | File                              |
+|---------|-----------------------------------|
+| Ghostty | `extras/ghostty/nyanuwatari`      |
+| Tmux    | `extras/tmux/nyanuwatari.tmux`    |
+| Fish    | `extras/fish/nyanuwatari.fish`    |
 
-These are output artifacts — **don't edit them by hand**, they get overwritten on regeneration.
+These are output artifacts — don't edit by hand, they get overwritten on regeneration.
 
-### Regenerating the extras
+### Regenerating
 
-The extras are built from `lua/nyanuwatari/palette.lua` via [shipwright.nvim](https://github.com/rktjmp/shipwright.nvim). After editing the palette:
+After tuning `lua/nyanuwatari/palette.lua`:
 
 ```sh
 just extras
 ```
 
-`just` auto-clones `lush.nvim` and `shipwright.nvim` into a project-local `.deps/` directory on first run — nothing touches your system nvim install. Other useful recipes:
+The extras are built by a small Lua generator (`lua/nyanuwatari/extras/`) using only headless Neovim — no external build deps.
 
-| Recipe | What it does |
-|--------|--------------|
-| `just check` | Headless smoke-test: loads the colorscheme, reports errors |
-| `just extras` | Regenerate every file under `extras/` |
-| `just fmt` | Run `stylua` over `lua/` and `colors/` |
-| `just check-fmt` | Verify `stylua` formatting (exits non-zero if dirty) |
-| `just deps-update` | Pull latest `lush.nvim` / `shipwright.nvim` |
-| `just deps-clean` | Remove `.deps/` (next run re-clones fresh) |
+| Recipe          | What it does |
+|-----------------|--------------|
+| `just check`    | Headless smoke-test: load the colorscheme, fail on errors |
+| `just extras`   | Regenerate everything under `extras/` |
+| `just fmt`      | Run `stylua` over `lua/` and `colors/` |
+| `just check-fmt`| Verify `stylua` formatting (exits non-zero if dirty) |
+| `just cache-clean` | Drop the compiled-highlights cache |
 
-## Status
+## Palette
 
-Currently MVP:
+Authored in HSL (`{h, s, l}`) for ergonomic tuning on the color wheel, resolved to hex at load time via `lua/nyanuwatari/hsl.lua`. Edit `lua/nyanuwatari/palette.lua` to shift hues / saturation / lightness; the rest of the theme follows automatically.
 
-- ✅ Dark variant
-- ✅ Treesitter, LSP semantic tokens, diagnostics
-- ✅ Five terminal extras
-- ⏳ Light variant
-- ⏳ `setup()` config (transparent, italic toggles, custom overrides)
-- ⏳ Plugin-specific integrations (Telescope, lualine, cmp, …)
+### No green in code — enforcement
 
-## Credits
+Green never reaches a syntax group. The chokepoint is `lua/nyanuwatari/colors.lua` — `green` is not exposed as a top-level key on the resolved colors table. Code-shaped groups (`groups/base.lua` syntax section, `groups/treesitter.lua`, `groups/semantic_tokens.lua`, `groups/kinds.lua`) cannot reach it. Green leaks only through `c.git.add`, `c.diff.add`, `c.ok`, `c.terminal.green`, and the `mini.icons` UI category.
 
-- Architecture pattern from [zenbones-theme/zenbones.nvim](https://github.com/zenbones-theme/zenbones.nvim)
-- Pipeline via [rktjmp/shipwright.nvim](https://github.com/rktjmp/shipwright.nvim) and [rktjmp/lush.nvim](https://github.com/rktjmp/lush.nvim)
+## Architecture
+
+Inspired by [tokyonight.nvim](https://github.com/folke/tokyonight.nvim).
+
+```
+lua/nyanuwatari/
+  init.lua            -- setup(opts) / load()
+  config.lua          -- defaults + user-merge
+  theme.lua           -- orchestrator: colors → groups → nvim_set_hl
+  util.lua            -- blend / darken / lighten / template / cache
+  hsl.lua             -- HSL ↔ hex (~50 lines, no dependencies)
+  palette.lua         -- HSL palette (single source of truth)
+  colors.lua          -- HSL → hex + semantic alias layer
+  groups/
+    init.lua          -- aggregator: cache, plugin auto-detect via lazy
+    base.lua          -- editor UI + native Syntax/* + diff/git UI
+    treesitter.lua    -- @* groups
+    semantic_tokens.lua  -- @lsp.*
+    kinds.lua         -- LSP kind helper
+    plugins/          -- per-plugin overrides
+  extras/             -- ghostty / tmux / fish generators
+```
