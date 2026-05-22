@@ -10,6 +10,7 @@ M.targets = {
   { name = "ghostty", path = "extras/ghostty/nyanuwatari" },
   { name = "tmux", path = "extras/tmux/nyanuwatari.tmux" },
   { name = "fish", path = "extras/fish/nyanuwatari.fish" },
+  { name = "fzf", path = "extras/fzf/nyanuwatari.conf" },
 }
 
 function M.setup()
