@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # Check out the PR head branch (not the detached merge commit) so we
+          # can push regenerated extras back. Falls back to the ref for pushes.
+          ref: ${{ github.head_ref || github.ref }}
+
+      - name: Install Neovim
+        uses: rhysd/action-setup-vim@v1
+        with:
+          neovim: true
+          version: stable
+
+      - name: Install just
+        uses: extractions/setup-just@v2
+
+      - name: Install stylua
+        run: |
+          curl -fsSL -o stylua.zip \
+            https://github.com/JohnnyMorganz/StyLua/releases/latest/download/stylua-linux-x86_64.zip
+          unzip -q stylua.zip
+          sudo install stylua /usr/local/bin/
+          rm stylua stylua.zip
+
+      - name: Smoke-test colorscheme (just check)
+        run: just check
+
+      - name: Check Lua formatting (just check-fmt)
+        run: just check-fmt
+
+      - name: Regenerate extras (just extras)
+        run: just extras
+
+      # If `just extras` produced any diff on a PR, commit it back to the
+      # branch as github-actions[bot]. `[skip ci]` prevents a recursive run.
+      - name: Commit regenerated extras
+        if: github.event_name == 'pull_request'
+        run: |
+          if ! git diff --quiet extras/; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add extras/
+            git commit -m "chore(extras): regenerate from palette [skip ci]"
+            git pull --rebase origin "${{ github.head_ref }}"
+            git push origin "HEAD:${{ github.head_ref }}"
+          fi
