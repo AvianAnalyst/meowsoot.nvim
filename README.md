@@ -1,4 +1,4 @@
-# nyanuwatari
+# meowsoot
 
 A dark Neovim colorscheme. Pure Lua, no runtime dependencies.
 
@@ -10,7 +10,7 @@ It's a **cyan / pink / lavender / yellow**-oriented colorscheme. **No green in c
 
 Six-hue chromatic palette anchored at 190° · 208° · 275° · 328° · 20° · 50°, warm-biased, AAA contrast throughout.
 
-![nyanuwatari.nvim in action](static/showcase.png)
+![meowsoot.nvim in action](static/showcase.png)
 
 ## Install
 
@@ -20,11 +20,11 @@ Requires Neovim 0.9+. **No external dependencies.**
 
 ```lua
 {
-  "marekh19/nyanuwatari.nvim",
+  "marekh19/meowsoot.nvim",
   lazy = false,
   priority = 1000,
   config = function()
-    vim.cmd.colorscheme("nyanuwatari")
+    vim.cmd.colorscheme("meowsoot")
   end,
 }
 ```
@@ -33,11 +33,11 @@ Requires Neovim 0.9+. **No external dependencies.**
 
 ```lua
 {
-  dir = "/path/to/nyanuwatari",
+  dir = "/path/to/meowsoot",
   lazy = false,
   priority = 1000,
   config = function()
-    vim.cmd.colorscheme("nyanuwatari")
+    vim.cmd.colorscheme("meowsoot")
   end,
 }
 ```
@@ -47,7 +47,7 @@ Requires Neovim 0.9+. **No external dependencies.**
 All options are optional. Defaults shown.
 
 ```lua
-require("nyanuwatari").setup({
+require("meowsoot").setup({
   transparent = false,            -- transparent backgrounds
   terminal_colors = true,         -- set vim.g.terminal_color_0..15
 
@@ -75,7 +75,7 @@ require("nyanuwatari").setup({
   on_highlights = function(hl, c) end, -- mutate the highlight table
 
 })
-vim.cmd.colorscheme("nyanuwatari")
+vim.cmd.colorscheme("meowsoot")
 ```
 
 ### Plugins covered out of the box
@@ -87,7 +87,7 @@ vim.cmd.colorscheme("nyanuwatari")
 Use the bundled lualine theme:
 
 ```lua
-require("lualine").setup({ options = { theme = "nyanuwatari" } })
+require("lualine").setup({ options = { theme = "meowsoot" } })
 ```
 
 ## Extras (terminal / multiplexer / shell)
@@ -96,21 +96,21 @@ Pre-generated configs live in `extras/`:
 
 | Tool    | File                              |
 |---------|-----------------------------------|
-| Ghostty | `extras/ghostty/nyanuwatari`      |
-| Tmux    | `extras/tmux/nyanuwatari.tmux`    |
-| Fish    | `extras/fish/nyanuwatari.fish`    |
+| Ghostty | `extras/ghostty/meowsoot`      |
+| Tmux    | `extras/tmux/meowsoot.tmux`    |
+| Fish    | `extras/fish/meowsoot.fish`    |
 
 These are output artifacts — don't edit by hand, they get overwritten on regeneration.
 
 ### Regenerating
 
-After tuning `lua/nyanuwatari/palette.lua`:
+After tuning `lua/meowsoot/palette.lua`:
 
 ```sh
 just extras
 ```
 
-The extras are built by a small Lua generator (`lua/nyanuwatari/extras/`) using only headless Neovim — no external build deps.
+The extras are built by a small Lua generator (`lua/meowsoot/extras/`) using only headless Neovim — no external build deps.
 
 | Recipe          | What it does |
 |-----------------|--------------|
@@ -122,18 +122,18 @@ The extras are built by a small Lua generator (`lua/nyanuwatari/extras/`) using 
 
 ## Palette
 
-Authored in HSL (`{h, s, l}`) for ergonomic tuning on the color wheel, resolved to hex at load time via `lua/nyanuwatari/hsl.lua`. Edit `lua/nyanuwatari/palette.lua` to shift hues / saturation / lightness; the rest of the theme follows automatically.
+Authored in HSL (`{h, s, l}`) for ergonomic tuning on the color wheel, resolved to hex at load time via `lua/meowsoot/hsl.lua`. Edit `lua/meowsoot/palette.lua` to shift hues / saturation / lightness; the rest of the theme follows automatically.
 
 ### No green in code — enforcement
 
-Green never reaches a syntax group. The chokepoint is `lua/nyanuwatari/colors.lua` — `green` is not exposed as a top-level key on the resolved colors table. Code-shaped groups (`groups/base.lua` syntax section, `groups/treesitter.lua`, `groups/semantic_tokens.lua`, `groups/kinds.lua`) cannot reach it. Green leaks only through `c.git.add`, `c.diff.add`, `c.ok`, `c.terminal.green`, and the `mini.icons` UI category.
+Green never reaches a syntax group. The chokepoint is `lua/meowsoot/colors.lua` — `green` is not exposed as a top-level key on the resolved colors table. Code-shaped groups (`groups/base.lua` syntax section, `groups/treesitter.lua`, `groups/semantic_tokens.lua`, `groups/kinds.lua`) cannot reach it. Green leaks only through `c.git.add`, `c.diff.add`, `c.ok`, `c.terminal.green`, and the `mini.icons` UI category.
 
 ## Architecture
 
 Inspired by [tokyonight.nvim](https://github.com/folke/tokyonight.nvim).
 
 ```
-lua/nyanuwatari/
+lua/meowsoot/
   init.lua            -- setup(opts) / load()
   config.lua          -- defaults + user-merge
   theme.lua           -- orchestrator: colors → groups → nvim_set_hl

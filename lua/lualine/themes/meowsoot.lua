@@ -1,8 +1,8 @@
--- Lualine theme. Resolved from the live nyanuwatari palette so it stays
+-- Lualine theme. Resolved from the live meowsoot palette so it stays
 -- in sync with the colorscheme.
---   require("lualine").setup({ options = { theme = "nyanuwatari" } })
+--   require("lualine").setup({ options = { theme = "meowsoot" } })
 
-local Palette = require("nyanuwatari.palette")
+local Palette = require("meowsoot.palette")
 local p = Palette.resolve()
 
 local mode_bg = {

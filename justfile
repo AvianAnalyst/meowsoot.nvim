@@ -1,4 +1,4 @@
-# nyanuwatari.nvim — task runner. No external build deps.
+# meowsoot.nvim — task runner. No external build deps.
 
 # Default recipe: list available tasks
 default:
@@ -8,7 +8,7 @@ default:
 check:
     nvim --headless --noplugin -u NONE \
       --cmd 'set rtp+=.' \
-      -c 'colorscheme nyanuwatari' \
+      -c 'colorscheme meowsoot' \
       -c 'echo "ok"' \
       -c 'q'
 
@@ -16,7 +16,7 @@ check:
 extras:
     nvim --headless --noplugin -u NONE \
       --cmd 'set rtp+=.' \
-      -c 'lua require("nyanuwatari.extras").setup()' \
+      -c 'lua require("meowsoot.extras").setup()' \
       -c 'q'
 
 # Format every Lua source file with stylua
@@ -29,4 +29,4 @@ check-fmt:
 
 # Drop the compiled-highlights cache
 cache-clean:
-    rm -f "$(nvim --headless --noplugin -u NONE -c 'echo stdpath(\"cache\")' -c 'q' 2>&1 | tr -d '\r\n')/nyanuwatari.json"
+    rm -f "$(nvim --headless --noplugin -u NONE -c 'echo stdpath(\"cache\")' -c 'q' 2>&1 | tr -d '\r\n')/meowsoot.json"

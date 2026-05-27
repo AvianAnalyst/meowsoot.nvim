@@ -1,4 +1,4 @@
-local Util = require("nyanuwatari.util")
+local Util = require("meowsoot.util")
 
 local M = {}
 

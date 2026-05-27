@@ -2,12 +2,12 @@
 
 local M = {}
 
----@param opts? nyanuwatari.Config
+---@param opts? meowsoot.Config
 function M.setup(opts)
-  opts = vim.tbl_deep_extend("force", require("nyanuwatari.config").options, opts or {})
+  opts = vim.tbl_deep_extend("force", require("meowsoot.config").options, opts or {})
 
-  local colors = require("nyanuwatari.colors").setup(opts)
-  local groups, names = require("nyanuwatari.groups").setup(colors, opts)
+  local colors = require("meowsoot.colors").setup(opts)
+  local groups, names = require("meowsoot.groups").setup(colors, opts)
 
   if vim.g.colors_name then
     vim.cmd.highlight("clear")
@@ -17,7 +17,7 @@ function M.setup(opts)
   end
 
   vim.o.termguicolors = true
-  vim.g.colors_name = "nyanuwatari"
+  vim.g.colors_name = "meowsoot"
 
   for group, hl in pairs(groups) do
     if type(hl) == "string" then

@@ -7,14 +7,14 @@
 -- This makes "no green in code syntax" a structural property: writing
 -- `c.green` in any group file resolves to `nil` and fails loudly.
 
-local Util = require("nyanuwatari.util")
-local Palette = require("nyanuwatari.palette")
+local Util = require("meowsoot.util")
+local Palette = require("meowsoot.palette")
 
 local M = {}
 
----@param opts nyanuwatari.Config
+---@param opts meowsoot.Config
 function M.setup(opts)
-  opts = opts or require("nyanuwatari.config").options
+  opts = opts or require("meowsoot.config").options
   local p = Palette.resolve()
 
   Util.bg = p.bg_0

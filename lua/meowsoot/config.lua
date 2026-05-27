@@ -4,7 +4,7 @@ local M = {}
 
 M.version = "0.2.0"
 
----@class nyanuwatari.Config
+---@class meowsoot.Config
 M.defaults = {
   transparent = false,
   terminal_colors = true,

@@ -1,7 +1,7 @@
 -- Color manipulation, template engine, JSON cache, highlight helpers.
 -- Adapted from folke/tokyonight.nvim (MIT).
 
-local hsl = require("nyanuwatari.hsl")
+local hsl = require("meowsoot.hsl")
 
 local M = {}
 
@@ -93,7 +93,7 @@ function M.write(path, data)
   vim.fn.mkdir(vim.fn.fnamemodify(path, ":h"), "p")
   local fd = uv.fs_open(path, "w", 420)
   if not fd then
-    error("nyanuwatari: cannot open " .. path)
+    error("meowsoot: cannot open " .. path)
   end
   uv.fs_write(fd, data, 0)
   uv.fs_close(fd)
@@ -103,7 +103,7 @@ end
 M.cache = {}
 
 function M.cache.file()
-  return vim.fn.stdpath("cache") .. "/nyanuwatari.json"
+  return vim.fn.stdpath("cache") .. "/meowsoot.json"
 end
 
 function M.cache.read()

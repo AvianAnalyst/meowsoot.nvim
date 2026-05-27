@@ -30,7 +30,7 @@ function M.get(c)
     BlinkCmpSource              = { fg = c.fg_faint },
   }
 
-  require("nyanuwatari.groups.kinds").kinds(ret, "BlinkCmpKind%s")
+  require("meowsoot.groups.kinds").kinds(ret, "BlinkCmpKind%s")
   return ret
 end
 

@@ -3,12 +3,12 @@
 -- caches the resolved highlight table to JSON for fast subsequent loads.
 -- Adapted from folke/tokyonight.nvim (MIT).
 
-local Config = require("nyanuwatari.config")
-local Util = require("nyanuwatari.util")
+local Config = require("meowsoot.config")
+local Util = require("meowsoot.util")
 
 local M = {}
 
--- lazy.nvim plugin name -> module name under `nyanuwatari.groups.plugins.`
+-- lazy.nvim plugin name -> module name under `meowsoot.groups.plugins.`
 -- stylua: ignore
 M.plugins = {
   ["gitsigns.nvim"]           = "gitsigns",
@@ -31,13 +31,13 @@ M.plugins = {
 }
 
 local function get_module(name, plugin)
-  local ok, mod = pcall(require, "nyanuwatari.groups." .. name)
+  local ok, mod = pcall(require, "meowsoot.groups." .. name)
   if not ok then
-    ok, mod = pcall(require, "nyanuwatari.groups.plugins." .. name)
+    ok, mod = pcall(require, "meowsoot.groups.plugins." .. name)
   end
   if not ok then
     error(
-      ("nyanuwatari: group module '%s' not found%s"):format(
+      ("meowsoot: group module '%s' not found%s"):format(
         name,
         plugin and (" (for " .. plugin .. ")") or ""
       )
@@ -47,7 +47,7 @@ local function get_module(name, plugin)
 end
 
 ---@param colors table
----@param opts nyanuwatari.Config
+---@param opts meowsoot.Config
 function M.setup(colors, opts)
   local enabled = {
     base = true,

@@ -1,10 +1,10 @@
-local Util = require("nyanuwatari.util")
+local Util = require("meowsoot.util")
 
 local M = {}
 
 local template = [[
-# nyanuwatari — Ghostty theme.
-# Auto-generated from lua/nyanuwatari/palette.lua. Do not edit by hand.
+# meowsoot — Ghostty theme.
+# Auto-generated from lua/meowsoot/palette.lua. Do not edit by hand.
 # See https://ghostty.org/docs/config/reference
 
 palette = 0=${terminal.black}

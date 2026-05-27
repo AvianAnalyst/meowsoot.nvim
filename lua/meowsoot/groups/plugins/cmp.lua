@@ -21,7 +21,7 @@ function M.get(c)
     CmpItemMenu            = { fg = c.fg_faint },
   }
 
-  require("nyanuwatari.groups.kinds").kinds(ret, "CmpItemKind%s")
+  require("meowsoot.groups.kinds").kinds(ret, "CmpItemKind%s")
   return ret
 end
 

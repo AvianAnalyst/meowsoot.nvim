@@ -1,19 +1,24 @@
-# nyanuwatari — Fish shell theme.
-# Auto-generated from lua/nyanuwatari/palette.lua. Do not edit by hand.
-# Install:  cp extras/fish/nyanuwatari.fish ~/.config/fish/conf.d/
+local Util = require("meowsoot.util")
+
+local M = {}
+
+local template = [[
+# meowsoot — Fish shell theme.
+# Auto-generated from lua/meowsoot/palette.lua. Do not edit by hand.
+# Install:  cp extras/fish/meowsoot.fish ~/.config/fish/conf.d/
 
 # Palette
-set -l foreground e2e0df
-set -l selection  353331
-set -l comment    b1ada9
-set -l red        e99696
-set -l green      98cdaa
-set -l yellow     dfd286
-set -l peach      e3b096
-set -l cyan       96d8e3
-set -l cyan_br    c4e7ee
-set -l pink       eaa4c9
-set -l lavender   cca6e7
+set -l foreground ${fg}
+set -l selection  ${bg_visual}
+set -l comment    ${fg_mute}
+set -l red        ${red}
+set -l green      ${ok}
+set -l yellow     ${yellow}
+set -l peach      ${peach}
+set -l cyan       ${cyan}
+set -l cyan_br    ${cyan_br}
+set -l pink       ${pink}
+set -l lavender   ${lavender}
 
 # Syntax Highlighting Colors
 set -g fish_color_normal         $foreground
@@ -47,3 +52,25 @@ set -g fish_pager_color_selected_background  --background=$selection
 set -g fish_pager_color_selected_completion  $foreground
 set -g fish_pager_color_selected_description $comment
 set -g fish_pager_color_selected_prefix      $cyan
+]]
+
+---@param colors table
+function M.generate(colors)
+  -- Fish needs hex without '#'
+  local fc = {}
+  for k, v in pairs(colors) do
+    if type(v) == "string" then
+      fc[k] = v:gsub("^#", "")
+    elseif type(v) == "table" then
+      fc[k] = {}
+      for kk, vv in pairs(v) do
+        if type(vv) == "string" then
+          fc[k][kk] = vv:gsub("^#", "")
+        end
+      end
+    end
+  end
+  return Util.template(template, fc)
+end
+
+return M

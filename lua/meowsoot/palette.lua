@@ -1,7 +1,7 @@
--- nyanuwatari palette.
+-- meowsoot palette.
 -- Authored in HSL for ergonomic tuning on the color wheel:
 --   { hue 0-360, saturation 0-100, lightness 0-100 }
--- Resolved to hex once at theme load via lua/nyanuwatari/hsl.lua.
+-- Resolved to hex once at theme load via lua/meowsoot/hsl.lua.
 --
 -- Accent tiering (8-point lightness spread):
 --   ANCHOR   L=78 — structural anchors (functions, types, headings)
@@ -9,7 +9,7 @@
 --   QUIET    L=70 — highest-frequency tokens (strings, numbers)
 --   BRIGHT   L=85 — rare emphasis only
 
-local hsl = require("nyanuwatari.hsl")
+local hsl = require("meowsoot.hsl")
 
 local M = {}
 
@@ -48,7 +48,7 @@ local hsl_palette = {
   yellow_br   = {  50, 55, 85 },
 
   -- Reserved — UI/diff/git/success only. NEVER referenced from syntax groups
-  -- (see lua/nyanuwatari/colors.lua semantic-alias chokepoint).
+  -- (see lua/meowsoot/colors.lua semantic-alias chokepoint).
   green = { 140, 35, 70 },
   red   = {   0, 65, 75 },
 }

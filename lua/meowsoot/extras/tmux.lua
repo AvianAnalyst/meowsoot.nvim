@@ -1,11 +1,11 @@
-local Util = require("nyanuwatari.util")
+local Util = require("meowsoot.util")
 
 local M = {}
 
 local template = [[
-# nyanuwatari — Tmux theme.
-# Auto-generated from lua/nyanuwatari/palette.lua. Do not edit by hand.
-# Source from your tmux.conf:  source-file ~/path/to/nyanuwatari.tmux
+# meowsoot — Tmux theme.
+# Auto-generated from lua/meowsoot/palette.lua. Do not edit by hand.
+# Source from your tmux.conf:  source-file ~/path/to/meowsoot.tmux
 
 set -g status-style "fg=${fg},bg=${bg_1}"
 
