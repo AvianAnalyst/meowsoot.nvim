@@ -1,9 +1,15 @@
 -- Lualine theme. Resolved from the live meowsoot palette so it stays
 -- in sync with the colorscheme.
 --   require("lualine").setup({ options = { theme = "meowsoot" } })
+--
+-- Reads the current variant dynamically from `vim.o.background` (which the
+-- meowsoot theme.lua sets to match the active style). Lualine's loader
+-- clears this module from package.loaded on every ColorScheme autocmd, so
+-- this module re-evaluates and re-picks the right palette on each switch.
 
 local Palette = require("meowsoot.palette")
-local p = Palette.resolve()
+local style = vim.o.background == "light" and "dawn" or "night"
+local p = Palette.resolve(style)
 
 local mode_bg = {
   normal = p.pink,

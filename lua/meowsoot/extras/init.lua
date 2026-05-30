@@ -14,8 +14,11 @@ M.targets = {
 }
 
 function M.setup()
-  -- Force non-transparent, all-plugins for the snapshot
+  -- Force non-transparent night palette for the snapshot — extras are terminal
+  -- configs that ship to match the canonical dark theme. A dawn-extras pass can
+  -- be added later if/when there's demand.
   local colors = require("meowsoot.colors").setup({
+    style = "night",
     transparent = false,
     styles = { sidebars = "dark", floats = "dark" },
   })

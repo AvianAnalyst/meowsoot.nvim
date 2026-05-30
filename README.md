@@ -1,14 +1,14 @@
 # meowsoot
 
-A dark Neovim colorscheme. Pure Lua, no runtime dependencies.
+A Neovim colorscheme in two variants: **night** (charcoal dark) and **dawn** (warm cream light). Pure Lua, no runtime dependencies.
 
 ## The story
 
-A fusion of two ideas. The charcoal background is inspired by **Susuwatari** — the wandering soot sprites from Studio Ghibli films. The pink and peach accents are inspired by **Nyan Cat**'s pop-tart palette. The rest of the colors — cyan, lavender, yellow, blue — were tuned to round out the system.
+A fusion of two ideas. The charcoal background is inspired by **Susuwatari** — the wandering soot sprites from Studio Ghibli films. The pink and peach accents are inspired by **Nyan Cat**'s pop-tart palette. The rest of the colors — cyan, lavender, yellow, blue — were tuned to round out the system. The **dawn** variant carries the same hue identity onto a warm cream background — the same soot sprites, woken up at sunrise.
 
 It's a **cyan / pink / lavender / yellow**-oriented colorscheme. **No green in code** — green exists in the palette but is reachable only through UI semantic aliases (diff add, git add, success state, ANSI terminal slot 2). Strings are yellow, escapes are peach, types are lavender, functions are pink.
 
-Six-hue chromatic palette anchored at 190° · 208° · 275° · 328° · 20° · 50°, warm-biased, AAA contrast throughout.
+Six-hue chromatic palette anchored at 190° · 208° · 275° · 328° · 20° · 50°, warm-biased, high-contrast throughout (AAA on night, AA+ on dawn).
 
 ![meowsoot.nvim in action](static/showcase.png)
 
@@ -48,6 +48,7 @@ All options are optional. Defaults shown.
 
 ```lua
 require("meowsoot").setup({
+  style = "night",                -- "night" (dark) | "dawn" (light)
   transparent = false,            -- transparent backgrounds
   terminal_colors = true,         -- set vim.g.terminal_color_0..15
 
@@ -76,6 +77,33 @@ require("meowsoot").setup({
 
 })
 vim.cmd.colorscheme("meowsoot")
+```
+
+### Variants
+
+Two ways to pick a variant:
+
+```lua
+require("meowsoot").setup({ style = "dawn" })
+vim.cmd.colorscheme("meowsoot")
+```
+
+Or skip `setup` entirely and use the per-variant entry point:
+
+```vim
+:colorscheme meowsoot          " night
+:colorscheme meowsoot-dawn     " dawn
+```
+
+To flip variants with `:set background=light` / `dark`, wire an autocmd:
+
+```lua
+vim.api.nvim_create_autocmd("OptionSet", {
+  pattern = "background",
+  callback = function()
+    vim.cmd.colorscheme(vim.o.background == "light" and "meowsoot-dawn" or "meowsoot")
+  end,
+})
 ```
 
 ### Plugins covered out of the box

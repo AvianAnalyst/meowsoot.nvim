@@ -17,6 +17,7 @@ function M.setup(opts)
   end
 
   vim.o.termguicolors = true
+  vim.o.background = opts.style == "dawn" and "light" or "dark"
   vim.g.colors_name = "meowsoot"
 
   for group, hl in pairs(groups) do

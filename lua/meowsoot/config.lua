@@ -6,6 +6,10 @@ M.version = "0.2.0"
 
 ---@class meowsoot.Config
 M.defaults = {
+  ---Variant. `"night"` (default) ships the original dark theme; `"dawn"` ships the warm light counterpart.
+  ---When unset, `vim.o.background == "light"` auto-selects `"dawn"`.
+  ---@type meowsoot.Style
+  style = "night",
   transparent = false,
   terminal_colors = true,
   cache = true,

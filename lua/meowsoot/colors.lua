@@ -15,7 +15,7 @@ local M = {}
 ---@param opts meowsoot.Config
 function M.setup(opts)
   opts = opts or require("meowsoot.config").options
-  local p = Palette.resolve()
+  local p = Palette.resolve(opts.style)
 
   Util.bg = p.bg_0
   Util.fg = p.fg
