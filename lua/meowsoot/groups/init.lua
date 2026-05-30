@@ -28,6 +28,11 @@ M.plugins = {
   ["mini.diff"]               = "mini_diff",
   ["mini.notify"]             = "mini_notify",
   ["mini.pick"]               = "mini_pick",
+  ["noice.nvim"]              = "noice",
+  ["which-key.nvim"]          = "which_key",
+  ["trouble.nvim"]            = "trouble",
+  ["render-markdown.nvim"]    = "render_markdown",
+  ["fzf-lua"]                 = "fzf_lua",
 }
 
 local function get_module(name, plugin)
