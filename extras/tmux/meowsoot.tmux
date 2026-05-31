@@ -1,4 +1,5 @@
 # meowsoot — Tmux theme.
+# https://github.com/marekh19/meowsoot.nvim
 # Auto-generated from lua/meowsoot/palette.lua. Do not edit by hand.
 # Source from your tmux.conf:  source-file ~/path/to/meowsoot.tmux
 

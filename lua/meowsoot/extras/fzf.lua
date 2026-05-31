@@ -4,6 +4,7 @@ local M = {}
 
 local template = [[
 # meowsoot — fzf theme.
+# https://github.com/marekh19/meowsoot.nvim
 # Auto-generated from lua/meowsoot/palette.lua. Do not edit by hand.
 # Use via:  set -gx FZF_DEFAULT_OPTS_FILE ~/path/to/meowsoot.conf
 #           (or merge --color lines into your existing FZF_DEFAULT_OPTS)

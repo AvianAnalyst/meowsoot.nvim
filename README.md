@@ -14,7 +14,7 @@ Pure Lua. Zero runtime dependencies. Authored in HSL, AAA contrast on the night 
 - **Six chromatic accents, tuned together.** Anchored at 190° · 208° · 275° · 328° · 20° · 50° — cyan, blue, lavender, pink, peach, yellow. Warm-biased. Three lightness tiers per accent (ANCHOR / STANDARD / QUIET) so the visual hierarchy of the syntax tree comes through without arbitrary highlight noise.
 - **Pure Lua, zero dependencies.** ~50-line HSL → hex engine. No plenary, no required treesitter, no `lush.nvim`. Loads fast, caches compiled highlights, easy to fork.
 - **22 plugin integrations, auto-detected via `lazy.nvim`.** Telescope, fzf-lua, Snacks, Gitsigns, nvim-cmp, blink.cmp, mini.*, noice, which-key, trouble, render-markdown, treesitter-context, flash, lazy.nvim, nvim-tree, indent-blankline. Bundled lualine theme.
-- **Ecosystem in the box.** Matching configs for Ghostty, Tmux, Fish, and fzf live in `extras/`, regenerated from the same palette. Your editor identity carries through to your shell.
+- **Ecosystem in the box.** Matching configs for Ghostty, Kitty, Alacritty, WezTerm, Tmux, Fish, and fzf live in `extras/`, regenerated from the same palette. Your editor identity carries through to your shell.
 
 ## Palette
 
@@ -46,7 +46,7 @@ The night variant is the main act; **dawn** is a complementary light counterpart
 
 ![dawn variant](static/showcase-dawn.png)
 
-**Terminal ecosystem.** Ghostty, Tmux, and Fish all themed via the `extras/` configs, regenerated from the same palette.
+**Terminal ecosystem.** Ghostty, Kitty, Alacritty, WezTerm, Tmux, and Fish all themed via the `extras/` configs, regenerated from the same palette.
 
 ![ghostty, tmux, fish](static/showcase-ghostty-fish-tmux.png)
 
@@ -167,12 +167,15 @@ It reads the active variant from `vim.o.background` and re-resolves on every `:c
 
 Pre-generated configs live in `extras/`:
 
-| Tool    | File                              |
-|---------|-----------------------------------|
-| Ghostty | `extras/ghostty/meowsoot`         |
-| Tmux    | `extras/tmux/meowsoot.tmux`       |
-| Fish    | `extras/fish/meowsoot.fish`       |
-| fzf     | `extras/fzf/meowsoot.conf`        |
+| Tool      | File                              |
+|-----------|-----------------------------------|
+| Ghostty   | `extras/ghostty/meowsoot`         |
+| Kitty     | `extras/kitty/meowsoot.conf`      |
+| Alacritty | `extras/alacritty/meowsoot.toml`  |
+| WezTerm   | `extras/wezterm/meowsoot.toml`    |
+| Tmux      | `extras/tmux/meowsoot.tmux`       |
+| Fish      | `extras/fish/meowsoot.fish`       |
+| fzf       | `extras/fzf/meowsoot.conf`        |
 
 These are output artifacts — don't edit by hand, they get overwritten on regeneration. They're pinned to the **night** palette so the terminal identity stays canonical even if you switch the editor to dawn.
 
@@ -224,5 +227,5 @@ lua/meowsoot/
     semantic_tokens.lua  -- @lsp.*
     kinds.lua         -- LSP kind helper
     plugins/          -- per-plugin overrides
-  extras/             -- ghostty / tmux / fish / fzf / palette-svg generators
+  extras/             -- ghostty / kitty / alacritty / wezterm / tmux / fish / fzf / palette-svg generators
 ```

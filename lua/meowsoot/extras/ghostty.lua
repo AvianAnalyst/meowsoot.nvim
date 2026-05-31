@@ -4,6 +4,7 @@ local M = {}
 
 local template = [[
 # meowsoot — Ghostty theme.
+# https://github.com/marekh19/meowsoot.nvim
 # Auto-generated from lua/meowsoot/palette.lua. Do not edit by hand.
 # See https://ghostty.org/docs/config/reference
 

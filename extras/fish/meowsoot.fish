@@ -1,4 +1,5 @@
 # meowsoot — Fish shell theme.
+# https://github.com/marekh19/meowsoot.nvim
 # Auto-generated from lua/meowsoot/palette.lua. Do not edit by hand.
 # Install:  cp extras/fish/meowsoot.fish ~/.config/fish/conf.d/
 

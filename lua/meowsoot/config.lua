@@ -2,7 +2,7 @@
 
 local M = {}
 
-M.version = "0.1.0"
+M.version = "0.1.1"
 
 ---@class meowsoot.Config
 M.defaults = {

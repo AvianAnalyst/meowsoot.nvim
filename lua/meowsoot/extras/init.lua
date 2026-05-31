@@ -8,6 +8,9 @@ local M = {}
 
 M.targets = {
   { name = "ghostty", path = "extras/ghostty/meowsoot" },
+  { name = "kitty", path = "extras/kitty/meowsoot.conf" },
+  { name = "alacritty", path = "extras/alacritty/meowsoot.toml" },
+  { name = "wezterm", path = "extras/wezterm/meowsoot.toml" },
   { name = "tmux", path = "extras/tmux/meowsoot.tmux" },
   { name = "fish", path = "extras/fish/meowsoot.fish" },
   { name = "fzf", path = "extras/fzf/meowsoot.conf" },

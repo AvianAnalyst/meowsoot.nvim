@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.1.1] — 2026-05-31
+
+### Added
+
+- Terminal extras for Kitty (`extras/kitty/meowsoot.conf`), Alacritty
+  (`extras/alacritty/meowsoot.toml`), and WezTerm
+  (`extras/wezterm/meowsoot.toml`), regenerated from the same palette via
+  `just extras`.
+
+### Changed
+
+- All terminal extras (Ghostty, Tmux, Fish, fzf) now carry a project-URL
+  header comment for consistency with the new generators.
+
 ## [0.1.0] — 2026-05-31
 
 Initial public release.
@@ -35,5 +49,6 @@ Initial public release.
 - README palette swatch (`static/palette.svg`) generated from the live
   palette so it stays in sync.
 
-[Unreleased]: https://github.com/marekh19/meowsoot.nvim/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/marekh19/meowsoot.nvim/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/marekh19/meowsoot.nvim/releases/tag/v0.1.1
 [0.1.0]: https://github.com/marekh19/meowsoot.nvim/releases/tag/v0.1.0
