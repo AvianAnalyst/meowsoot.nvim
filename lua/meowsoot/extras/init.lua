@@ -11,6 +11,9 @@ M.targets = {
   { name = "tmux", path = "extras/tmux/meowsoot.tmux" },
   { name = "fish", path = "extras/fish/meowsoot.fish" },
   { name = "fzf", path = "extras/fzf/meowsoot.conf" },
+  -- README palette swatch — emits an SVG covering both variants from a single
+  -- source of truth. Stays in sync with palette.lua via `just extras`.
+  { name = "palette_svg", path = "static/palette.svg" },
 }
 
 function M.setup()
