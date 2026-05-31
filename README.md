@@ -1,5 +1,7 @@
 # meowsoot.nvim
 
+[![CI](https://github.com/marekh19/meowsoot.nvim/actions/workflows/ci.yml/badge.svg)](https://github.com/marekh19/meowsoot.nvim/actions/workflows/ci.yml)
+
 A pink–cyan–lavender Neovim colorscheme. Strings are yellow, functions are pink, types are lavender — and **green never reaches code**.
 
 Pure Lua. Zero runtime dependencies. Authored in HSL, AAA contrast on the night variant.

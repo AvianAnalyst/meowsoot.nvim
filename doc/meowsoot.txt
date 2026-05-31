@@ -1,0 +1,171 @@
+*meowsoot.txt*    A pink–cyan–lavender Neovim colorscheme.
+
+==============================================================================
+CONTENTS                                                  *meowsoot-contents*
+
+  1. Introduction ................... |meowsoot-introduction|
+  2. Quickstart ..................... |meowsoot-quickstart|
+  3. Setup .......................... |meowsoot-setup|
+  4. Variants ....................... |meowsoot-variants|
+  5. Plugins ........................ |meowsoot-plugins|
+  6. Lualine ........................ |meowsoot-lualine|
+  7. Extras ......................... |meowsoot-extras|
+
+==============================================================================
+INTRODUCTION                                          *meowsoot-introduction*
+                                                                  *meowsoot*
+
+meowsoot.nvim is a pink–cyan–lavender Neovim colorscheme. Two variants ship
+in the box: `night` (dark, the primary) and `dawn` (light).
+
+Requires Neovim 0.9+. No external dependencies.
+
+==============================================================================
+QUICKSTART                                              *meowsoot-quickstart*
+
+With `lazy.nvim`:
+
+>lua
+    {
+      "marekh19/meowsoot.nvim",
+      lazy = false,
+      priority = 1000,
+      config = function()
+        vim.cmd.colorscheme("meowsoot")
+      end,
+    }
+<
+
+No `setup()` call is required if the defaults suit you.
+
+==============================================================================
+SETUP                                                        *meowsoot-setup*
+
+                                                            *meowsoot.setup()*
+All options are optional. Defaults shown.
+
+>lua
+    require("meowsoot").setup({
+      style = "night",              -- "night" (dark) | "dawn" (light)
+      transparent = false,          -- transparent backgrounds
+      terminal_colors = true,       -- set vim.g.terminal_color_0..15
+
+      styles = {
+        comments  = { italic = true },
+        keywords  = {},
+        functions = {},
+        variables = {},
+        sidebars  = "dark",         -- "dark" | "transparent" | "normal"
+        floats    = "dark",
+      },
+
+      -- Plugin highlight groups. See |meowsoot-plugins|.
+      plugins = {
+        all  = false,
+        auto = true,
+      },
+
+      cache = true,                 -- cache compiled highlights to disk
+
+      on_colors    = function(c) end,        -- mutate the color table
+      on_highlights = function(hl, c) end,   -- mutate the highlight table
+    })
+    vim.cmd.colorscheme("meowsoot")
+<
+
+`on_colors(c)` and `on_highlights(hl, c)` let you mutate the palette and
+highlight groups before they're applied — for personal tweaks without
+forking.
+
+==============================================================================
+VARIANTS                                                  *meowsoot-variants*
+
+Two ways to pick a variant. Via `setup()`:
+
+>lua
+    require("meowsoot").setup({ style = "dawn" })
+    vim.cmd.colorscheme("meowsoot")
+<
+
+Or skip `setup` and use the per-variant entry point directly:
+
+>vim
+    :colorscheme meowsoot          " night
+    :colorscheme meowsoot-dawn     " dawn
+<
+
+To flip variants with `:set background=light` / `dark`, wire an autocmd:
+
+>lua
+    vim.api.nvim_create_autocmd("OptionSet", {
+      pattern = "background",
+      callback = function()
+        vim.cmd.colorscheme(
+          vim.o.background == "light" and "meowsoot-dawn" or "meowsoot"
+        )
+      end,
+    })
+<
+
+==============================================================================
+PLUGINS                                                    *meowsoot-plugins*
+
+22 plugin integrations ship in the box. They are auto-detected via
+`lazy.nvim` when `plugins.auto = true` (the default).
+
+Covered out of the box:
+
+    gitsigns · telescope · nvim-cmp · blink.cmp · lazy.nvim · flash.nvim ·
+    nvim-tree · indent-blankline · treesitter-context · snacks.nvim ·
+    mini.icons · mini.files · mini.statusline · mini.indentscope ·
+    mini.diff · mini.notify · mini.pick · noice · which-key · trouble ·
+    render-markdown · fzf-lua
+
+Behavior of `plugins`:
+
+  - `auto = true` (default) — query `lazy.nvim` and enable each known
+    integration whose plugin is installed. Falls back to no integrations
+    when `lazy.nvim` is not loaded.
+  - `all  = true`            — enable every known integration unconditionally.
+                                Useful if you do not use `lazy.nvim`.
+  - `<name> = true | false`  — force-enable or force-disable a specific
+                                integration regardless of detection. For
+                                example: >lua
+
+      plugins = {
+        auto = true,
+        telescope = true,   -- force-on even if lazy.nvim doesn't see it
+        gitsigns = false,   -- force-off
+      }
+<
+
+==============================================================================
+LUALINE                                                    *meowsoot-lualine*
+
+A bundled lualine theme ships under the same name:
+
+>lua
+    require("lualine").setup({ options = { theme = "meowsoot" } })
+<
+
+It reads the active variant from `vim.o.background` and re-resolves on every
+`:colorscheme` switch, so it stays in sync when you flip between night and
+dawn.
+
+==============================================================================
+EXTRAS                                                      *meowsoot-extras*
+
+Pre-generated configs for adjacent tooling ship in the repo under `extras/`:
+
+    Tool      File
+    -------   ----------------------------------
+    Ghostty   extras/ghostty/meowsoot
+    Tmux      extras/tmux/meowsoot.tmux
+    Fish      extras/fish/meowsoot.fish
+    fzf       extras/fzf/meowsoot.conf
+
+They are pinned to the **night** palette so the terminal identity stays
+canonical even if you switch the editor to dawn. Refer to each tool's own
+documentation for how to load a theme file.
+
+ vim:tw=78:ts=2:et:ft=help:norl:

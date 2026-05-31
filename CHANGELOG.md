@@ -1,0 +1,39 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/).
+
+## [Unreleased]
+
+## [0.1.0] — 2026-05-31
+
+Initial public release.
+
+### Added
+
+- HSL-authored palette resolved from a single source of truth
+  (`lua/meowsoot/palette.lua`), with **night** (dark) and **dawn** (light)
+  variants.
+- "No green in code" structural invariant — `green` is intentionally absent
+  from the color table syntax-shaped group files can see; green leaks only
+  through git/diff add lines, success states, the ANSI terminal slot, and
+  `mini.icons` UI.
+- Six-hue chromatic system anchored at 190° · 208° · 275° · 328° · 20° · 50°
+  (cyan, blue, lavender, pink, peach, yellow), each with three lightness
+  tiers (ANCHOR / STANDARD / QUIET).
+- 22 plugin integrations auto-detected via `lazy.nvim`: telescope, fzf-lua,
+  snacks, gitsigns, nvim-cmp, blink.cmp, mini.icons / mini.files /
+  mini.statusline / mini.indentscope / mini.diff / mini.notify / mini.pick,
+  noice, which-key, trouble, render-markdown, treesitter-context, flash,
+  lazy.nvim, nvim-tree, indent-blankline.
+- Bundled lualine theme that re-resolves on `:colorscheme` switches.
+- Terminal extras regenerated from the same palette: Ghostty, Tmux, Fish,
+  fzf.
+- Compiled-highlights cache persisted to `stdpath("cache")`.
+- README palette swatch (`static/palette.svg`) generated from the live
+  palette so it stays in sync.
+
+[Unreleased]: https://github.com/marekh19/meowsoot.nvim/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/marekh19/meowsoot.nvim/releases/tag/v0.1.0
