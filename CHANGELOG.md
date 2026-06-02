@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.1.2] — 2026-06-02
+
 ### Changed
 
 - README palette is now copyable Markdown tables — one row per color with the
@@ -61,6 +63,7 @@ Initial public release.
 - README palette swatch (`static/palette.svg`) generated from the live
   palette so it stays in sync.
 
-[Unreleased]: https://github.com/marekh19/meowsoot.nvim/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/marekh19/meowsoot.nvim/compare/v0.1.2...HEAD
+[0.1.2]: https://github.com/marekh19/meowsoot.nvim/releases/tag/v0.1.2
 [0.1.1]: https://github.com/marekh19/meowsoot.nvim/releases/tag/v0.1.1
 [0.1.0]: https://github.com/marekh19/meowsoot.nvim/releases/tag/v0.1.0
