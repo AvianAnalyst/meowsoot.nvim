@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.2.0] — 2026-07-17
+
 ### Changed
 
 - Passive **indent guides** toned down via a dedicated `indent` palette token,
@@ -73,7 +75,8 @@ Initial public release.
 - README palette swatch (`static/palette.svg`) generated from the live
   palette so it stays in sync.
 
-[Unreleased]: https://github.com/marekh19/meowsoot.nvim/compare/v0.1.2...HEAD
+[Unreleased]: https://github.com/marekh19/meowsoot.nvim/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/marekh19/meowsoot.nvim/releases/tag/v0.2.0
 [0.1.2]: https://github.com/marekh19/meowsoot.nvim/releases/tag/v0.1.2
 [0.1.1]: https://github.com/marekh19/meowsoot.nvim/releases/tag/v0.1.1
 [0.1.0]: https://github.com/marekh19/meowsoot.nvim/releases/tag/v0.1.0
