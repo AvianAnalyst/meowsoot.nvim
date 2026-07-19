@@ -7,13 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.3.0] — 2026-07-19
+
 ### Added
 
 - New **moon** variant — a cool, blue-tinted dark counterpart to `night` (#2).
-  Neutrals rotate to H≈230° at calm Rosé-Pine saturation on night's exact
-  lightness ladder; accents are reused verbatim, so the six-hue identity and
-  every AAA contrast carry over. Warm `night` stays default. Use via
-  `style = "moon"` or `:colorscheme meowsoot-moon`.
+  Neutrals rotate to H≈230° at calm Rosé-Pine saturation, lifted slightly above
+  night's ladder for a softer moonlit bg; accents are reused verbatim, so the
+  six-hue identity and every AAA contrast carry over. Warm `night` stays
+  default. Use via `style = "moon"` or `:colorscheme meowsoot-moon`.
+
+### Changed
+
+- README refreshed: showcase screenshots now lead, added per-variant shots
+  (night/moon/dawn of the same buffer), and the palette swatch tables are
+  collapsed into a `<details>` block. (#8)
 
 ## [0.2.0] — 2026-07-17
 
@@ -83,7 +91,8 @@ Initial public release.
 - README palette swatch (`static/palette.svg`) generated from the live
   palette so it stays in sync.
 
-[Unreleased]: https://github.com/marekh19/meowsoot.nvim/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/marekh19/meowsoot.nvim/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/marekh19/meowsoot.nvim/releases/tag/v0.3.0
 [0.2.0]: https://github.com/marekh19/meowsoot.nvim/releases/tag/v0.2.0
 [0.1.2]: https://github.com/marekh19/meowsoot.nvim/releases/tag/v0.1.2
 [0.1.1]: https://github.com/marekh19/meowsoot.nvim/releases/tag/v0.1.1
