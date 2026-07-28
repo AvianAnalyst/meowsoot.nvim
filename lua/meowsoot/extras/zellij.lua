@@ -129,9 +129,9 @@ themes {
 ]]
 
 function M.hex_to_rgb(hex)
-  local r = tonumber(string.sub(tostring(hex), 2, 3),16)
-  local g = tonumber(string.sub(tostring(hex), 4, 5),16)
-  local b = tonumber(string.sub(tostring(hex), 6, 7),16)
+  local r = tonumber(string.sub(tostring(hex), 2, 3), 16)
+  local g = tonumber(string.sub(tostring(hex), 4, 5), 16)
+  local b = tonumber(string.sub(tostring(hex), 6, 7), 16)
   return string.format("%03d %03d %03d", r, g, b)
 end
 
