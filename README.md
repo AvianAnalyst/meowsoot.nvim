@@ -171,6 +171,12 @@ Requires Neovim 0.9+. No external dependencies.
 }
 ```
 
+### Pack.vim (note: requires neovim 0.12+)
+```lua
+pack.add("https://github.com/marekh19/meowsoot.nvim")
+vim.cmd.colorscheme("meowsoot")
+```
+
 ### Local development
 
 ```lua
