@@ -128,21 +128,28 @@ themes {
 }
 ]]
 
-function M.hex_to_rgb(colors)
-  local out = {}
-  for name, hex in pairs(colors) do
-    local r = tonumber(string.sub(hex, 2, 3),16)
-    local g = tonumber(string.sub(hex, 4, 5),16)
-    local b = tonumber(string.sub(hex, 6, 7),16)
-    out[name] = string.format("%03d %03d %03d", r, g, b)
-  end
-  out.none = "NONE"
-  return out
+function M.hex_to_rgb(hex)
+  local r = tonumber(string.sub(tostring(hex), 2, 3),16)
+  local g = tonumber(string.sub(tostring(hex), 4, 5),16)
+  local b = tonumber(string.sub(tostring(hex), 6, 7),16)
+  return string.format("%03d %03d %03d", r, g, b)
+end
+
+---Substitute `${var}` (and nested `${a.b}`) in a template against a table.
+---@param str string
+---@param tbl table
+---@return string
+function M.zellij_template(str, tbl)
+  return (
+    str:gsub("($%b{})", function(w)
+      local hex = vim.tbl_get(tbl, unpack(vim.split(w:sub(3, -2), ".", { plain = true }))) or w
+      return M.hex_to_rgb(hex)
+    end)
+  )
 end
 
 function M.generate(colors)
-  colors = M.hex_to_rgb(colors)
-  return Util.template(template, colors)
+  return M.zellij_template(template, colors)
 end
 
 return M
